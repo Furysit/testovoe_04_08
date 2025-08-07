@@ -20,7 +20,7 @@
       env_file:
         - .env
       environment:
-        DATABASE_URL: postgresql+asyncpg://postgres:postgres@db:5432/testovoe_db
+        DB_URL: postgresql+asyncpg://postgres:postgres@db:5432/testovoe_db
       ports:
         - "8000:8000"
       volumes:
