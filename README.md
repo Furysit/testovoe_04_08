@@ -63,4 +63,4 @@ uvicorn main:app --reload
 Администратор | `admin@example.com` | `admin123` |
 Пользователь   | `user@example.com`  | `user123`  |
 
-
+# Рекомендую проверить LF у entrypoint.sh
