@@ -6,7 +6,7 @@ Create Date: 2025-08-07 22:40:26.807749
 
 """
 from typing import Sequence, Union
-
+from passlib.context import CryptContext
 from alembic import op
 import sqlalchemy as sa
 from sqlalchemy.sql import table, column
@@ -17,6 +17,8 @@ revision: str = '8979d1d0fb63'
 down_revision: Union[str, Sequence[str], None] = '1569ed307890'
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
+
+pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 user_table = table(
     'user',
@@ -41,14 +43,14 @@ def upgrade() -> None:
             "id": 1,
             "email": "admin@example.com",
             "full_name": "Admin",
-            "hashed_password": hashlib.sha256("admin123".encode()).hexdigest(),
+            "hashed_password": pwd_context.hash("admin123"),
             "role": "admin"
         },
         {
             "id": 2,
             "email": "user@example.com",
             "full_name": "User",
-            "hashed_password": hashlib.sha256("user123".encode()).hexdigest(),
+            "hashed_password": pwd_context.hash("user123"),
             "role": "user"
         },
     ])
