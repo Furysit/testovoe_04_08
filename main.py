@@ -9,13 +9,13 @@ from app.api_v1 import router as router_v1
 
 
 
-@asynccontextmanager
-async def lifespan(app: FastAPI):
-    async with db_helper.engine.begin() as conn:
-        await conn.run_sync(Base.metadata.create_all)
-    yield
+# @asynccontextmanager
+# async def lifespan(app: FastAPI):
+#     async with db_helper.engine.begin() as conn:
+#         await conn.run_sync(Base.metadata.create_all)
+#     yield
 
-app = FastAPI(lifespan=lifespan)
+app = FastAPI()
 
 app.include_router(router=router_v1, prefix="/api_v1")
 
